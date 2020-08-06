@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const currencyAmountInput = () => {
+const CurrencyAmountInput = () => {
+  const [loading, setLoading] = useState(true);
+  const [priceData, setPriceData] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        "https://api.coindesk.com/v1/bpi/currentprice.json"
+      );
+      const data = await response.json();
+      setPriceData(data.bpi);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
+
+  if (loading === true) {
+    return (
+      <img
+        src="https://media.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif"
+        alt="Loading..."
+      />
+    );
+  }
+
   return (
     <>
       <form>
@@ -11,4 +35,4 @@ const currencyAmountInput = () => {
   );
 };
 
-export default currencyAmountInput;
+export default CurrencyAmountInput;
