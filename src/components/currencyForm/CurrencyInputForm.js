@@ -16,21 +16,19 @@ const CurrencyAmountInput = () => {
     fetchData();
   }, []);
 
-  if (loading === true) {
-    return (
-      <img
-        src="https://media.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif"
-        alt="Loading..."
-      />
-    );
-  }
-
   return (
     <>
-      <form>
-        <input type="number" placeholder="BTC" />
-        <button type="submit">EXCHANGE</button>
-      </form>
+      {loading ? (
+        <img
+          src="https://media.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif"
+          alt="Loading..."
+        />
+      ) : (
+        <form>
+          <input type="number" placeholder="BTC" />
+          <button type="submit">EXCHANGE</button>
+        </form>
+      )}
     </>
   );
 };
