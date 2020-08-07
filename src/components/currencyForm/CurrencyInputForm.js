@@ -26,6 +26,11 @@ const CurrencyAmountInput = () => {
     }
   }, []);
 
+  function deleteItem(index) {
+    const filteredItems = currencyRatesArray.splice(index, 1);
+    setCurrencyRatesArray([...currencyRatesArray], filteredItems);
+  }
+
   return (
     <>
       {loading ? (
@@ -49,6 +54,7 @@ const CurrencyAmountInput = () => {
           <CurrencyExchangeResults
             currencyRatesArray={currencyRatesArray}
             bitcoinsAmount={bitcoinsAmount}
+            deleteItem={deleteItem}
           />
           <hr />
           {currencyInfo.disclaimer}
