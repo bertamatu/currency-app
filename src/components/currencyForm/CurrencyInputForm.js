@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from "react";
+import CurrencyExchangeResults from "./CurrencyExchangeResults";
+import { get } from "lodash";
+
+const BASE_URL = `https://api.coindesk.com/v1/bpi/currentprice.json`;
 
 const CurrencyAmountInput = () => {
   const [loading, setLoading] = useState(true);
-  const [priceData, setPriceData] = useState(null);
+  const [currencyInfo, setCurrencyInfo] = useState();
+  const [currencyRatesArray, setCurrencyRatesArray] = useState([]);
+  const [bitcoinsAmount, setBitcoinsAmount] = useState(1);
+
+  async function fetchData() {
+    const response = await fetch(BASE_URL);
+    const data = await response.json();
+    setCurrencyInfo(data);
+    setCurrencyRatesArray(Object.values(get(data, "bpi")));
+    setLoading(false);
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        "https://api.coindesk.com/v1/bpi/currentprice.json"
-      );
-      const data = await response.json();
-      setPriceData(data.bpi);
-      setLoading(false);
+    try {
+      fetchData();
+    } catch (error) {
+      console.log(error);
     }
-    fetchData();
   }, []);
 
   return (
@@ -24,10 +34,26 @@ const CurrencyAmountInput = () => {
           alt="Loading..."
         />
       ) : (
-        <form>
-          <input type="number" placeholder="BTC" />
-          <button type="submit">EXCHANGE</button>
-        </form>
+        <>
+          <hr />
+          <form>
+            <h4>{currencyInfo.chartName}</h4>
+            <input
+              type="number"
+              placeholder={bitcoinsAmount}
+              onChange={(e) => setBitcoinsAmount(e.target.value)}
+            />
+            <button type="submit">EXCHANGE</button>
+          </form>
+          <hr />
+          <CurrencyExchangeResults
+            currencyRatesArray={currencyRatesArray}
+            bitcoinsAmount={bitcoinsAmount}
+          />
+          <hr />
+          {currencyInfo.disclaimer}
+          <hr />
+        </>
       )}
     </>
   );
