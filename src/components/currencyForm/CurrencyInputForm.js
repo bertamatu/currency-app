@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CurrencyExchangeResults from "./CurrencyExchangeResults";
+import CurrencyDropDownMenu from "./CurrencyDropDownMenu";
 import { get } from "lodash";
+import styled from "styled-components";
 
 const BASE_URL = `https://api.coindesk.com/v1/bpi/currentprice.json`;
 
@@ -26,21 +28,20 @@ const CurrencyAmountInput = () => {
     }
   }, []);
 
-  function deleteItem(index) {
+  const deleteItem = (index) => {
     const filteredItems = currencyRatesArray.splice(index, 1);
     setCurrencyRatesArray([...currencyRatesArray], filteredItems);
-  }
+  };
 
   return (
     <>
       {loading ? (
-        <img
+        <Loading
           src="https://media.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif"
           alt="Loading..."
         />
       ) : (
         <>
-          <hr />
           <form>
             <h4>{currencyInfo.chartName}</h4>
             <input
@@ -49,15 +50,17 @@ const CurrencyAmountInput = () => {
               onChange={(e) => setBitcoinsAmount(e.target.value)}
             />
             <button type="submit">EXCHANGE</button>
+            <CurrencyExchangeResults
+              currencyInfo={currencyInfo}
+              currencyRatesArray={currencyRatesArray}
+              bitcoinsAmount={bitcoinsAmount}
+              deleteItem={deleteItem}
+            />
           </form>
+          <CurrencyDropDownMenu currencyRatesArray={currencyRatesArray} />
+          <br />
           <hr />
-          <CurrencyExchangeResults
-            currencyRatesArray={currencyRatesArray}
-            bitcoinsAmount={bitcoinsAmount}
-            deleteItem={deleteItem}
-          />
-          <hr />
-          {currencyInfo.disclaimer}
+          <small>{currencyInfo.disclaimer}</small>
           <hr />
         </>
       )}
@@ -66,3 +69,13 @@ const CurrencyAmountInput = () => {
 };
 
 export default CurrencyAmountInput;
+
+const Loading = styled.img`
+  border-radius: 50%;
+  opacity: 0.1;
+  height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30vh;
+`;
