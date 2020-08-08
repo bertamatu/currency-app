@@ -3,6 +3,7 @@ import CurrencyExchangeResults from "./CurrencyExchangeResults";
 import CurrencyDropDownMenu from "./CurrencyDropDownMenu";
 import { get } from "lodash";
 import styled from "styled-components";
+import { FaBtc } from "react-icons/fa";
 
 const BASE_URL = `https://api.coindesk.com/v1/bpi/currentprice.json`;
 
@@ -42,8 +43,9 @@ const CurrencyAmountInput = () => {
         />
       ) : (
         <>
-          <form>
-            <h4>{currencyInfo.chartName}</h4>
+          <BtcIcon />
+          <Form>
+            {currencyInfo.chartName}
             <input
               type="number"
               placeholder={bitcoinsAmount}
@@ -56,7 +58,7 @@ const CurrencyAmountInput = () => {
               bitcoinsAmount={bitcoinsAmount}
               deleteItem={deleteItem}
             />
-          </form>
+          </Form>
           <CurrencyDropDownMenu currencyRatesArray={currencyRatesArray} />
           <br />
           <hr />
@@ -78,4 +80,11 @@ const Loading = styled.img`
   margin-left: auto;
   margin-right: auto;
   margin-top: 30vh;
+`;
+const Form = styled.form`
+  text-align: center;
+`;
+const BtcIcon = styled(FaBtc)`
+  font-size: 5rem;
+  color: rgb(242, 169, 0);
 `;
