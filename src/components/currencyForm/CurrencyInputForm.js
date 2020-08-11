@@ -12,6 +12,7 @@ const CurrencyAmountInput = () => {
   const [currencyInfo, setCurrencyInfo] = useState();
   const [currencyRatesArray, setCurrencyRatesArray] = useState([]);
   const [bitcoinsAmount, setBitcoinsAmount] = useState(1);
+  // const [visible, setVisible] = useState(true);
 
   async function fetchData() {
     const response = await fetch(BASE_URL);
@@ -35,6 +36,10 @@ const CurrencyAmountInput = () => {
     setCurrencyRatesArray([...currencyRatesArray], deletedItem);
     console.log("deletedItem", deletedItem);
   };
+  // const toggle = (e) => {
+  //   e.preventDefault();
+  //   setVisible(!visible);
+  // };
 
   return (
     <>
@@ -48,6 +53,7 @@ const CurrencyAmountInput = () => {
           <BtcIcon />
           <Form>
             {currencyInfo.chartName}
+            <br />
             <input
               type="number"
               placeholder={bitcoinsAmount}

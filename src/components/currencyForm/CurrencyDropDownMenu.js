@@ -3,7 +3,7 @@ import Select from "react-select";
 
 const CurrencyDropDownMenu = (props) => {
   const { currencyRatesArray } = props;
-  const [selectedOption, setSelectedOption] = useState();
+  const [selectedCurrency, setSelectedCurrency] = useState();
 
   const currencyOptions = currencyRatesArray.map((item) => {
     return {
@@ -12,9 +12,9 @@ const CurrencyDropDownMenu = (props) => {
     };
   });
 
-  const handleOptionSelect = (selectedOption) => {
-    setSelectedOption({ selectedOption });
-    console.log("selectedOption", selectedOption, selectedOption.value);
+  const handleOptionSelect = (selectedCurrency) => {
+    setSelectedCurrency({ selectedCurrency });
+    console.log("selectedCurrency", selectedCurrency);
   };
 
   return (
@@ -22,13 +22,15 @@ const CurrencyDropDownMenu = (props) => {
       <b>Add currency:</b>
       <div style={{ width: "200px" }}>
         <Select
-          value={selectedOption}
-          selected={currencyOptions === selectedOption}
+          placeholder="Select currency..."
+          value={selectedCurrency}
+          selected={currencyOptions === selectedCurrency}
           options={currencyOptions}
           onChange={handleOptionSelect}
         />
       </div>
       <button type="submit">Add</button>
+      <hr />
     </div>
   );
 };
