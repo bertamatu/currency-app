@@ -4,14 +4,14 @@ import { TiDelete } from "react-icons/ti";
 import MessageAddCurrency from "../AddCurrencyOptionsMessage";
 
 const CurrencyExchangeResults = (props) => {
-  const { currencyRatesArray, bitcoinsAmount, deleteItem } = props;
+  const { currencyRates, bitcoinsAmount, deleteItem } = props;
 
   return (
     <CurrenciesContainer>
-      {currencyRatesArray.length === 0 ? (
+      {currencyRates.length === 0 ? (
         <MessageAddCurrency />
       ) : (
-        currencyRatesArray.map((item, index) => (
+        currencyRates.map((item, index) => (
           <CurrencyCard key={index}>
             <h4>
               {Intl.NumberFormat(item.code, {

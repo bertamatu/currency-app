@@ -10,15 +10,20 @@ const BASE_URL = `https://api.coindesk.com/v1/bpi/currentprice.json`;
 const CurrencyAmountInput = () => {
   const [loading, setLoading] = useState(true);
   const [currencyInfo, setCurrencyInfo] = useState();
-  const [currencyRatesArray, setCurrencyRatesArray] = useState([]);
+  const [currencyRates, setCurrencyRates] = useState([]);
+  const [selectedCurrencyRates, setSelectedCurrencyRates] = useState([]);
   const [bitcoinsAmount, setBitcoinsAmount] = useState(1);
+  const [selectedCurrency, setSelectedCurrency] = useState();
+
   // const [visible, setVisible] = useState(true);
 
   async function fetchData() {
     const response = await fetch(BASE_URL);
     const data = await response.json();
     setCurrencyInfo(data);
-    setCurrencyRatesArray(Object.values(get(data, "bpi")));
+    setCurrencyRates(Object.values(get(data, "bpi")));
+    setSelectedCurrencyRates(Object.values(get(data, "bpi")));
+
     setLoading(false);
   }
   // setTimeout(fetchData, 60000);
@@ -32,14 +37,29 @@ const CurrencyAmountInput = () => {
   }, []);
 
   const deleteItem = (index) => {
-    const deletedItem = currencyRatesArray.splice(index, 1);
-    setCurrencyRatesArray([...currencyRatesArray], deletedItem);
+    const deletedItem = currencyRates.splice(index, 1);
+    setCurrencyRates([...currencyRates], deletedItem);
     console.log("deletedItem", deletedItem);
   };
   // const toggle = (e) => {
   //   e.preventDefault();
   //   setVisible(!visible);
   // };
+  const handleOptionSelect = (selectedCurrency) => {
+    setSelectedCurrency({ selectedCurrency });
+    console.log("selectedCurrency", selectedCurrency);
+  };
+
+  const displaySelectedItem = (e) => {
+    e.preventDefault();
+    if (selectedCurrency !== undefined) {
+      const filteredSelectedItem = selectedCurrencyRates.filter((item) => {
+        return item.code === selectedCurrency.selectedCurrency.label;
+      });
+      console.log("filteredSelectedItem", filteredSelectedItem);
+      setCurrencyRates([...currencyRates], filteredSelectedItem);
+    }
+  };
 
   return (
     <>
@@ -62,12 +82,17 @@ const CurrencyAmountInput = () => {
             {/* <button type="submit">EXCHANGE</button> */}
             <CurrencyExchangeResults
               currencyInfo={currencyInfo}
-              currencyRatesArray={currencyRatesArray}
+              currencyRates={currencyRates}
               bitcoinsAmount={bitcoinsAmount}
               deleteItem={deleteItem}
             />
           </Form>
-          <CurrencyDropDownMenu currencyRatesArray={currencyRatesArray} />
+          <CurrencyDropDownMenu
+            selectedCurrencyRates={selectedCurrencyRates}
+            handleOptionSelect={handleOptionSelect}
+            selectedCurrency={selectedCurrency}
+            displaySelectedItem={displaySelectedItem}
+          />
           <br />
           <hr />
           <small>{currencyInfo.disclaimer}</small>
