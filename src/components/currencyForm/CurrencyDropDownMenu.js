@@ -15,10 +15,9 @@ const CurrencyDropDownMenu = (props) => {
   return (
     <div>
       <b>Add currency:</b>
-      <Select
-        // onChange={this.handleSelectChange}
-        options={currencyOptions}
-      />
+      <div style={{ width: "200px" }}>
+        <Select options={currencyOptions} />
+      </div>
     </div>
   );
 };

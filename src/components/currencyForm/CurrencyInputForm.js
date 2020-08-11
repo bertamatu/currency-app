@@ -20,6 +20,7 @@ const CurrencyAmountInput = () => {
     setCurrencyRatesArray(Object.values(get(data, "bpi")));
     setLoading(false);
   }
+  setTimeout(fetchData, 60000);
 
   useEffect(() => {
     try {
@@ -30,8 +31,9 @@ const CurrencyAmountInput = () => {
   }, []);
 
   const deleteItem = (index) => {
-    const filteredItems = currencyRatesArray.splice(index, 1);
-    setCurrencyRatesArray([...currencyRatesArray], filteredItems);
+    const deletedItem = currencyRatesArray.splice(index, 1);
+    setCurrencyRatesArray([...currencyRatesArray], deletedItem);
+    console.log("deletedItem", deletedItem);
   };
 
   return (
