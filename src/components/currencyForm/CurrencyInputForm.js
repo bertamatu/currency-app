@@ -51,14 +51,16 @@ const CurrencyAmountInput = () => {
   };
 
   const displaySelectedItem = (e) => {
-    e.preventDefault();
-    if (selectedCurrency !== undefined) {
-      const filteredSelectedItem = selectedCurrencyRates.filter((item) => {
-        return item.code === selectedCurrency.selectedCurrency.label;
-      });
-      console.log("filteredSelectedItem", filteredSelectedItem);
-      setCurrencyRates([...currencyRates], filteredSelectedItem);
-    }
+    // e.preventDefault();
+    // if (selectedCurrency !== undefined) {
+    //   const filteredSelectedItem = selectedCurrencyRates.filter((item) => {
+    //     return item.code === selectedCurrency.selectedCurrency.label;
+    //   });
+    // console.log("filteredSelectedItem", filteredSelectedItem);
+    // setCurrencyRates([...currencyRates], filteredSelectedItem);
+    currencyRates.splice(0, 0, selectedCurrency.selectedCurrency.value);
+    console.log("currencyRates after DISPLAY", currencyRates);
+    // }
   };
 
   return (
