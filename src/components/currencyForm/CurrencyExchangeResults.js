@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { TiDelete } from "react-icons/ti";
-import getSymbolFromCurrency from "currency-symbol-map";
+// import getSymbolFromCurrency from "currency-symbol-map";
 
 const CurrencyExchangeResults = (props) => {
   const { currencyRatesArray, bitcoinsAmount, deleteItem } = props;
@@ -10,8 +10,12 @@ const CurrencyExchangeResults = (props) => {
     <CurrenciesContainer>
       {currencyRatesArray.map((item, index) => (
         <CurrencyCard key={index}>
-          <b>{getSymbolFromCurrency(item.code)}</b>
-          {bitcoinsAmount * item.rate_float}
+          <h4>
+            {Intl.NumberFormat(item.code, {
+              style: "currency",
+              currency: item.code,
+            }).format(bitcoinsAmount * item.rate_float)}
+          </h4>
           <DeleteIcon onClick={() => deleteItem(index)} />
         </CurrencyCard>
       ))}

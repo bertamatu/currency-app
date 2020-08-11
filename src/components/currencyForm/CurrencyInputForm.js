@@ -20,7 +20,7 @@ const CurrencyAmountInput = () => {
     setCurrencyRatesArray(Object.values(get(data, "bpi")));
     setLoading(false);
   }
-  setTimeout(fetchData, 60000);
+  // setTimeout(fetchData, 60000);
 
   useEffect(() => {
     try {
@@ -53,7 +53,7 @@ const CurrencyAmountInput = () => {
               placeholder={bitcoinsAmount}
               onChange={(e) => setBitcoinsAmount(e.target.value)}
             />
-            <button type="submit">EXCHANGE</button>
+            {/* <button type="submit">EXCHANGE</button> */}
             <CurrencyExchangeResults
               currencyInfo={currencyInfo}
               currencyRatesArray={currencyRatesArray}
