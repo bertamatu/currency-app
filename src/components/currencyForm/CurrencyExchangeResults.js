@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { TiDelete } from "react-icons/ti";
-import MessageAddCurrency from "../AddCurrencyOptionsMessage";
+import StatusMessage from "../StatusMessage";
 
 const CurrencyExchangeResults = (props) => {
-  const { currencyRates, bitcoinsAmount, deleteItem } = props;
+  const { currencyRates, bitcoinsAmount, removeItem } = props;
 
   return (
     <CurrenciesContainer>
       {currencyRates.length === 0 ? (
-        <MessageAddCurrency />
+        <StatusMessage />
       ) : (
         currencyRates.map((item, index) => (
           <CurrencyCard key={index}>
@@ -19,7 +19,7 @@ const CurrencyExchangeResults = (props) => {
                 currency: item.code,
               }).format(bitcoinsAmount * item.rate_float)}
             </h4>
-            <DeleteIcon onClick={() => deleteItem(index)} />
+            <DeleteIcon onClick={() => removeItem(index)} />
           </CurrencyCard>
         ))
       )}

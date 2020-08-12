@@ -1,6 +1,6 @@
 import React from "react";
 
-const AddCurrencyMessage = () => {
+const StatusMessage = () => {
   return (
     <div style={{ padding: "30px", color: "red" }}>
       Please, add currency to see the exchange rate!
@@ -8,4 +8,4 @@ const AddCurrencyMessage = () => {
   );
 };
 
-export default AddCurrencyMessage;
+export default StatusMessage;

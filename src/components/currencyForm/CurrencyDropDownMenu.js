@@ -31,7 +31,6 @@ const CurrencyDropDownMenu = (props) => {
       <button type="submit" onClick={displaySelectedItem}>
         Add
       </button>
-      <hr />
     </div>
   );
 };

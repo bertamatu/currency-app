@@ -7,6 +7,11 @@ import { FaBtc } from "react-icons/fa";
 
 const BASE_URL = `https://api.coindesk.com/v1/bpi/currentprice.json`;
 
+function useForceUpdate() {
+  const [value, setValue] = useState(0);
+  return () => setValue((value) => ++value);
+}
+
 const CurrencyAmountInput = () => {
   const [loading, setLoading] = useState(true);
   const [currencyInfo, setCurrencyInfo] = useState();
@@ -14,8 +19,7 @@ const CurrencyAmountInput = () => {
   const [selectedCurrencyRates, setSelectedCurrencyRates] = useState([]);
   const [bitcoinsAmount, setBitcoinsAmount] = useState(1);
   const [selectedCurrency, setSelectedCurrency] = useState();
-
-  // const [visible, setVisible] = useState(true);
+  const forceUpdate = useForceUpdate();
 
   async function fetchData() {
     const response = await fetch(BASE_URL);
@@ -23,9 +27,9 @@ const CurrencyAmountInput = () => {
     setCurrencyInfo(data);
     setCurrencyRates(Object.values(get(data, "bpi")));
     setSelectedCurrencyRates(Object.values(get(data, "bpi")));
-
     setLoading(false);
   }
+
   // setTimeout(fetchData, 60000);
 
   useEffect(() => {
@@ -36,31 +40,21 @@ const CurrencyAmountInput = () => {
     }
   }, []);
 
-  const deleteItem = (index) => {
+  const removeItem = (index) => {
     const deletedItem = currencyRates.splice(index, 1);
     setCurrencyRates([...currencyRates], deletedItem);
     console.log("deletedItem", deletedItem);
   };
-  // const toggle = (e) => {
-  //   e.preventDefault();
-  //   setVisible(!visible);
-  // };
+
   const handleOptionSelect = (selectedCurrency) => {
     setSelectedCurrency({ selectedCurrency });
     console.log("selectedCurrency", selectedCurrency);
   };
 
-  const displaySelectedItem = (e) => {
-    // e.preventDefault();
-    // if (selectedCurrency !== undefined) {
-    //   const filteredSelectedItem = selectedCurrencyRates.filter((item) => {
-    //     return item.code === selectedCurrency.selectedCurrency.label;
-    //   });
-    // console.log("filteredSelectedItem", filteredSelectedItem);
-    // setCurrencyRates([...currencyRates], filteredSelectedItem);
+  const displaySelectedItem = () => {
     currencyRates.splice(0, 0, selectedCurrency.selectedCurrency.value);
     console.log("currencyRates after DISPLAY", currencyRates);
-    // }
+    forceUpdate();
   };
 
   return (
@@ -81,12 +75,11 @@ const CurrencyAmountInput = () => {
               placeholder={bitcoinsAmount}
               onChange={(e) => setBitcoinsAmount(e.target.value)}
             />
-            {/* <button type="submit">EXCHANGE</button> */}
             <CurrencyExchangeResults
               currencyInfo={currencyInfo}
               currencyRates={currencyRates}
               bitcoinsAmount={bitcoinsAmount}
-              deleteItem={deleteItem}
+              removeItem={removeItem}
             />
           </Form>
           <CurrencyDropDownMenu
