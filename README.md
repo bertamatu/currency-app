@@ -1,3 +1,22 @@
+<h1>Job search web app. </h1>
+<img src="https://iili.io/dXVQVa.png" height="500"/>
+<hr/>
+<h2>Bitcoin exchange App</h2>
+<code><b>React Js | Hooks | Lodash </b></code>
+<hr/>
+<h2>Run the app:</h2><br/>
+Run <code>npm install</code> to install all dependencies.<br/>
+Run <code>npm start</code> to start the app<br/><br/>
+<hr/>
+<h5>THINGS TO IMPROVE:</h5>
+<ul>
+<li>
+To avoid forceUpdate(), Redux or Context Api state manageement should be used;
+</li>
+</ul>
+
+<hr/><hr/>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
