@@ -4,9 +4,10 @@
 <code><b>React Js | Hooks | Lodash </b></code>
 <hr/>
 <h2>Run the app:</h2><br/>
-To install all dependencies run: <h4><code>npm install</code></h4> 
+Clone the app: <h4><code>$ git clone https://github.com/bertamatu/currency-app.git</code></h4> 
+To install all dependenciesrun: <h4><code>npm install</code></h4> 
 <br/>
-To start the app run: <h4><code>npm start</code></h4> <br/><br/>
+To start the apprun: <h4><code>npm start</code></h4> <br/><br/>
 <hr/>
 <h5>THINGS TO IMPROVE:</h5>
 <ul>
