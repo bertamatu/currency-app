@@ -41,8 +41,8 @@ const CurrencyAmountInput = () => {
   }, []);
 
   const removeItem = (index) => {
-    const deletedItem = currencyRates.splice(index, 1);
-    setCurrencyRates([...currencyRates], deletedItem);
+    const removedItem = currencyRates.splice(index, 1);
+    setCurrencyRates([...currencyRates], removedItem);
   };
 
   const handleOptionSelect = (selectedCurrency) => {
@@ -67,7 +67,7 @@ const CurrencyAmountInput = () => {
           <Form>
             {currencyInfo.chartName}
             <br />
-            <input
+            <BitcoinInput
               type="number"
               placeholder={bitcoinsAmount}
               onChange={(e) => setBitcoinsAmount(e.target.value)}
@@ -86,9 +86,7 @@ const CurrencyAmountInput = () => {
             displaySelectedItem={displaySelectedItem}
           />
           <br />
-          <hr />
           <small>{currencyInfo.disclaimer}</small>
-          <hr />
         </>
       )}
     </>
@@ -108,8 +106,20 @@ const Loading = styled.img`
 `;
 const Form = styled.form`
   text-align: center;
+  background: rgb(242, 169, 0);
+  margin-top: 1rem;
+  padding-top: 2rem;
+  border-radius: 0 50px 0 0;
 `;
 const BtcIcon = styled(FaBtc)`
   font-size: 5rem;
   color: rgb(242, 169, 0);
+  margin-bottom: 1rem;
+`;
+const BitcoinInput = styled.input`
+  border: none;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  outline-color: black;
+  border-radius: 15px 0 15px 0;
 `;

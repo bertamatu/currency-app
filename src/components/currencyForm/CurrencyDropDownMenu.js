@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "react-select";
+import styled from "styled-components";
 
 const CurrencyDropDownMenu = (props) => {
   const {
@@ -17,9 +18,9 @@ const CurrencyDropDownMenu = (props) => {
   });
 
   return (
-    <div>
+    <DropDownContainer>
       <b>Add currency:</b>
-      <div style={{ width: "200px" }}>
+      <SelectMenu style={{ width: "170px" }}>
         <Select
           placeholder="Select currency..."
           value={selectedCurrency}
@@ -27,12 +28,39 @@ const CurrencyDropDownMenu = (props) => {
           options={currencyOptionsForSelect}
           onChange={handleOptionSelect}
         />
-      </div>
-      <button type="submit" onClick={displaySelectedItem}>
+      </SelectMenu>
+      <Button type="submit" onClick={displaySelectedItem}>
         Add
-      </button>
-    </div>
+      </Button>
+    </DropDownContainer>
   );
 };
 
 export default CurrencyDropDownMenu;
+
+const DropDownContainer = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+  background: black;
+  color: rgb(242, 169, 0);
+  border-radius: 0 0 0 50px;
+  -webkit-box-shadow: 0px 35px 36px -9px rgba(0, 0, 0, 0.37);
+  -moz-box-shadow: 0px 35px 36px -9px rgba(0, 0, 0, 0.37);
+  box-shadow: 0px 35px 36px -9px rgba(0, 0, 0, 0.37);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 1rem;
+  }
+`;
+
+const SelectMenu = styled.section`
+  margin: 1rem;
+`;
+const Button = styled.button`
+  border: none;
+  cursor: pointer;
+`;

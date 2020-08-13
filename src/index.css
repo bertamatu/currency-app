@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 0.8rem;
-  padding: 5rem 15rem;
+  padding: 0rem 20rem;
 }
 
 code {
@@ -16,6 +16,7 @@ code {
 
 @media only screen and (max-width: 768px) {
   body {
-    padding: 3rem 2rem;
+    padding: 0rem 2rem;
+    font-size: 0.7rem;
   }
 }
