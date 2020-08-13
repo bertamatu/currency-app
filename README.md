@@ -5,8 +5,7 @@
 <hr/>
 <h2>Run the app:</h2><br/>
 Clone the app: <h4><code>$ git clone https://github.com/bertamatu/currency-app.git</code></h4> 
-To install all dependenciesrun: <h4><code>npm install</code></h4> 
-<br/>
+To install all dependenciesrun: <h4><code>npm install</code></h4><br/>
 To start the apprun: <h4><code>npm start</code></h4> <br/><br/>
 <hr/>
 <h5>THINGS TO IMPROVE:</h5>

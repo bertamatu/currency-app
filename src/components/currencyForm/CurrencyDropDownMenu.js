@@ -50,13 +50,11 @@ const DropDownContainer = styled.section`
   -webkit-box-shadow: 0px 35px 36px -9px rgba(0, 0, 0, 0.37);
   -moz-box-shadow: 0px 35px 36px -9px rgba(0, 0, 0, 0.37);
   box-shadow: 0px 35px 36px -9px rgba(0, 0, 0, 0.37);
-
   @media (max-width: 768px) {
     flex-direction: column;
     padding: 1rem;
   }
 `;
-
 const SelectMenu = styled.section`
   margin: 1rem;
 `;

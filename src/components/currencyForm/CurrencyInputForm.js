@@ -20,7 +20,6 @@ const CurrencyAmountInput = () => {
   const [bitcoinsAmount, setBitcoinsAmount] = useState(1);
   const [selectedCurrency, setSelectedCurrency] = useState();
   const forceUpdate = useForceUpdate();
-  console.log(currencyInfo);
 
   async function fetchData() {
     const response = await fetch(BASE_URL);
