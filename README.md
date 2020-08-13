@@ -4,9 +4,9 @@
 <code><b>React Js | Hooks | Lodash </b></code>
 <hr/>
 <h2>Run the app:</h2><br/>
-Run <h4><code>npm install</code></h4> to install all dependencies.
+To install all dependencies run: <h4><code>npm install</code></h4> 
 <br/>
-Run <h4><code>npm start</code></h4> to start the app<br/><br/>
+To start the app run: <h4><code>npm start</code></h4> <br/><br/>
 <hr/>
 <h5>THINGS TO IMPROVE:</h5>
 <ul>
