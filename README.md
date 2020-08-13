@@ -10,7 +10,7 @@ Run <code>npm start</code> to start the app<br/><br/>
 <h5>THINGS TO IMPROVE:</h5>
 <ul>
 <li>
-To avoid forceUpdate(), Redux or Context Api state manageement should be used;
+To avoid forceUpdate(), Redux or Context Api should be used for state management ;
 </li>
 </ul>
 
