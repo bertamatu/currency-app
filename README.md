@@ -1,4 +1,3 @@
-<h1>Job search web app. </h1>
 <img src="https://iili.io/dXVQVa.png" height="500"/>
 <hr/>
 <h2>Bitcoin exchange App</h2>
