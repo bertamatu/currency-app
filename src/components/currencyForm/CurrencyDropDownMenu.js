@@ -43,7 +43,7 @@ const DropDownContainer = styled.section`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   background: black;
   color: rgb(242, 169, 0);
   border-radius: 0 0 0 50px;
