@@ -1,5 +1,5 @@
 <img src="https://iili.io/dXVQVa.png" height="500"/>
-<a href="http://localhost:3000/">https://bitcoin-exchange.netlify.app/</a>
+<a href="https://bitcoin-exchange.netlify.app/">https://bitcoin-exchange.netlify.app/</a>
 <hr/>
 <h2>Bitcoin exchange App</h2>
 <code><b>React Js | Hooks | Lodash </b></code>
