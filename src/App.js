@@ -1,15 +1,12 @@
 import React from "react";
 import CurrencyForm from "./components/currencyForm/CurrencyInputForm";
-import { CurrencyProvider } from "./components/currencyForm/CurrencyContext";
 import styled from "styled-components";
 
 function App() {
   return (
-    <CurrencyProvider>
-      <AppContainer>
-        <CurrencyForm />
-      </AppContainer>
-    </CurrencyProvider>
+    <AppContainer>
+      <CurrencyForm />
+    </AppContainer>
   );
 }
 

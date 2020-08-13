@@ -38,7 +38,6 @@ const CurrenciesContainer = styled.section`
   }
 `;
 const CurrencyCard = styled.section`
-  padding: 1rem;
   display: flex;
   align-items: center;
   margin: 0 1rem;
