@@ -3,13 +3,13 @@ import Select from "react-select";
 
 const CurrencyDropDownMenu = (props) => {
   const {
-    selectedCurrencyRates,
+    currencyOptions,
     selectedCurrency,
     handleOptionSelect,
     displaySelectedItem,
   } = props;
 
-  const currencyOptions = selectedCurrencyRates.map((item) => {
+  const currencyOptionsForSelect = currencyOptions.map((item) => {
     return {
       label: item.code,
       value: item,
@@ -23,8 +23,8 @@ const CurrencyDropDownMenu = (props) => {
         <Select
           placeholder="Select currency..."
           value={selectedCurrency}
-          selected={currencyOptions === selectedCurrency}
-          options={currencyOptions}
+          selected={currencyOptionsForSelect === selectedCurrency}
+          options={currencyOptionsForSelect}
           onChange={handleOptionSelect}
         />
       </div>

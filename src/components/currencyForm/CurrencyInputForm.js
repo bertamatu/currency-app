@@ -1,5 +1,4 @@
-import React, { useEffect, useCallback, useContext } from "react";
-import { CurrencyContext } from "./CurrencyContext";
+import React, { useState, useEffect } from "react";
 import CurrencyExchangeResults from "./CurrencyExchangeResults";
 import CurrencyDropDownMenu from "./CurrencyDropDownMenu";
 import { get } from "lodash";
@@ -8,30 +7,34 @@ import { FaBtc } from "react-icons/fa";
 
 const BASE_URL = `https://api.coindesk.com/v1/bpi/currentprice.json`;
 
+function useForceUpdate() {
+  const [value, setValue] = useState(0);
+  return () => setValue((value) => ++value);
+}
+
 const CurrencyAmountInput = () => {
-  const [loading, setLoading] = useContext(CurrencyContext);
-  const [currencyInfo, setCurrencyInfo] = useContext(CurrencyContext);
-  const [currencyRates, setCurrencyRates] = useContext(CurrencyContext);
-  const [selectedCurrencyRates, setSelectedCurrencyRates] = useContext(
-    CurrencyContext
-  );
-  const [bitcoinsAmount, setBitcoinsAmount] = useContext(CurrencyContext);
-  const [selectedCurrency, setSelectedCurrency] = useContext(CurrencyContext);
+  const [loading, setLoading] = useState(true);
+  const [currencyInfo, setCurrencyInfo] = useState();
+  const [currencyRates, setCurrencyRates] = useState([]);
+  const [currencyOptions, setCurrencyOptions] = useState([]);
+  const [bitcoinsAmount, setBitcoinsAmount] = useState(1);
+  const [selectedCurrency, setSelectedCurrency] = useState();
+  const forceUpdate = useForceUpdate();
 
   async function fetchData() {
     const response = await fetch(BASE_URL);
     const data = await response.json();
     setCurrencyInfo(data);
     setCurrencyRates(Object.values(get(data, "bpi")));
-    setSelectedCurrencyRates(Object.values(get(data, "bpi")));
+    setCurrencyOptions(Object.values(get(data, "bpi")));
     setLoading(false);
+    console.log("loaded");
   }
-
-  // setTimeout(fetchData, 60000);
 
   useEffect(() => {
     try {
       fetchData();
+      setInterval(fetchData, 60000);
     } catch (error) {
       console.log(error);
     }
@@ -48,6 +51,7 @@ const CurrencyAmountInput = () => {
 
   const displaySelectedItem = () => {
     currencyRates.splice(0, 0, selectedCurrency.selectedCurrency.value);
+    forceUpdate();
   };
 
   return (
@@ -76,7 +80,7 @@ const CurrencyAmountInput = () => {
             />
           </Form>
           <CurrencyDropDownMenu
-            selectedCurrencyRates={selectedCurrencyRates}
+            currencyOptions={currencyOptions}
             handleOptionSelect={handleOptionSelect}
             selectedCurrency={selectedCurrency}
             displaySelectedItem={displaySelectedItem}
