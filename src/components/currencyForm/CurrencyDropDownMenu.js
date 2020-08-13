@@ -63,4 +63,6 @@ const SelectMenu = styled.section`
 const Button = styled.button`
   border: none;
   cursor: pointer;
+  padding: 0.65rem;
+  border-radius: 4px;
 `;

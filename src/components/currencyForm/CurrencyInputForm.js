@@ -20,6 +20,7 @@ const CurrencyAmountInput = () => {
   const [bitcoinsAmount, setBitcoinsAmount] = useState(1);
   const [selectedCurrency, setSelectedCurrency] = useState();
   const forceUpdate = useForceUpdate();
+  console.log(currencyInfo);
 
   async function fetchData() {
     const response = await fetch(BASE_URL);
@@ -28,7 +29,6 @@ const CurrencyAmountInput = () => {
     setCurrencyRates(Object.values(get(data, "bpi")));
     setCurrencyOptions(Object.values(get(data, "bpi")));
     setLoading(false);
-    console.log("loaded");
   }
 
   useEffect(() => {
@@ -85,6 +85,11 @@ const CurrencyAmountInput = () => {
             selectedCurrency={selectedCurrency}
             displaySelectedItem={displaySelectedItem}
           />
+          <br />
+          <h5 style={{ color: "gray" }}>
+            Last currency rates update: {currencyInfo.time.updated}
+          </h5>
+
           <br />
           <small>{currencyInfo.disclaimer}</small>
         </>
